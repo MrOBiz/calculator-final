@@ -14,13 +14,16 @@ const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 
 operatorButtons.forEach((button, index) => {
+    /* if(operandFlag == "/" && numB == 0){
+        clearEverything();
+        return "0 is a bad customer..."; 
+    }else{ */
     button.addEventListener("click", () => {
         if(numB != null){
             display.textContent = operate(numA, numB, operandFlag);
             numA = operate(numA, numB, operandFlag);
             inputNumB.length = 0;
         }
-
         operandFlag = operators[index];
     });
 });
@@ -40,17 +43,23 @@ numButtons.forEach((button, index) => {
 });
 
 equals.addEventListener("click", () => {
-                        if(numA != null && numB != null && 
-                            operandFlag != 0){
-                            operate(numA, numB, operandFlag);
-                            display. textContent = 
-                                sayEqual(numA, numB, operandFlag);
-                        }else{
-                            clearEverything();
-                        } 
-                    });
+            if(numA != null && numB != null && 
+                operandFlag != 0){
+                operate(numA, numB, operandFlag);
+                display. textContent = 
+                        sayEqual(numA, numB, operandFlag);
 
-clear.addEventListener("click", clearEverything);
+                clearEverything();
+            }else{
+                clearEverything();
+                display.textContent = "Waiting";
+            } 
+        });
+
+clear.addEventListener("click", () => {
+            clearEverything()
+            display.textContent = "Waiting";
+        });
 
 
 function clearEverything(){
@@ -59,12 +68,16 @@ function clearEverything(){
     inputNumB.length = 0;
     numA = null;
     numB = null;
-    display.textContent = "Waiting";
 }
 
 function sayEqual(a, b, flag){
-    return a + " " + flag + " " +
-           b + " = " + operate(a, b, flag);
+    if(flag == "/" && b == 0){
+        clearEverything();
+        return "0 is a bad customer..."; 
+    }else{    
+        return a + " " + flag + " " +
+                b + " = " + operate(a, b, flag);
+    }
 }
 
 function add(a, b){
@@ -87,6 +100,7 @@ function operate(a, b, opr){
     a = Math.round(a * 1000) / 1000;
     b = Math.round(b * 1000) / 1000;
 
+    
     switch (opr){
         case "+":
             return Math.round(add(a, b) * 1000) / 1000;
