@@ -15,6 +15,11 @@ operatorButtons.forEach((button, index) => {
     });
 });
 
+numButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        
+    }),
+});
 
 function add(a, b){
     return a + b;
