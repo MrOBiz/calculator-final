@@ -40,23 +40,32 @@ numButtons.forEach((button, index) => {
 });
 
 equals.addEventListener("click", () => {
-                        operate(numA, numB, operandFlag);
-                        display.textContent = numA + " " +
-                                            operandFlag +
-                                            " " +
-                                            numB + " = " +
-                                            operate(numA, numB, operandFlag); 
+                        if(numA != null && numB != null && 
+                            operandFlag != 0){
+                            operate(numA, numB, operandFlag);
+                            display. textContent = 
+                                sayEqual(numA, numB, operandFlag);
+                        }else{
+                            clearEverything();
+                        } 
                     });
 
-clear.addEventListener("click", () => {
-                        operandFlag = 0;
-                        inputNumA.length = 0;
-                        inputNumB.length = 0;
-                        numA = null;
-                        numB = null;
-                        display.textContent = "Waiting";
-                    });
+clear.addEventListener("click", clearEverything);
 
+
+function clearEverything(){
+    operandFlag = 0;
+    inputNumA.length = 0;
+    inputNumB.length = 0;
+    numA = null;
+    numB = null;
+    display.textContent = "Waiting";
+}
+
+function sayEqual(a, b, flag){
+    return a + " " + flag + " " +
+           b + " = " + operate(a, b, flag);
+}
 
 function add(a, b){
     return a + b;
@@ -92,7 +101,7 @@ function operate(a, b, opr){
             return Math.round(multiply(a, b) * 1000) / 1000;
         
         default:
-            return "Invalid opration.";
+            return "Invalid operation.";
     }
 }
 
