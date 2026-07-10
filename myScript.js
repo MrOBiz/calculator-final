@@ -3,7 +3,6 @@ let operators = ["+", "-", "*", "/"];
 let operandFlag = 0; //If != 0 then an operand has been clicked
 let inputNumA = [];
 let inputNumB = [];
-let result;
 
 const display = document.querySelector("#display");
 
@@ -76,18 +75,21 @@ function divide(a, b){
 }
 
 function operate(a, b, opr){
+    a = Math.round(a * 1000) / 1000;
+    b = Math.round(b * 1000) / 1000;
+
     switch (opr){
         case "+":
-            return add(a, b);
+            return Math.round(add(a, b) * 1000) / 1000;
         
         case "-":
-            return subtract(a, b);
+            return Math.round(subtract(a, b) * 1000) / 1000;
 
         case "/":
-            return divide(a, b);
+            return Math.round(divide(a, b) * 1000) / 1000;
 
         case "*":
-            return multiply(a, b);
+            return Math.round(multiply(a, b) * 1000) / 1000;
         
         default:
             return "Invalid opration.";
