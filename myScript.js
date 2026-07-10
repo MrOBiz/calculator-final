@@ -16,8 +16,13 @@ const clear = document.querySelector("#clear");
 
 operatorButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
+        if(numB != null){
+            display.textContent = operate(numA, numB, operandFlag);
+            numA = operate(numA, numB, operandFlag);
+            inputNumB.length = 0;
+        }
+
         operandFlag = operators[index];
-        display.textContent = operandFlag;
     });
 });
 
