@@ -1,6 +1,6 @@
 let numA, numB;
-let operators = ["+", "-", "*", "/", "=", "c"];
-let flag = 0;
+let operators = ["+", "-", "*", "/"];
+let operandFlag = 0; //If != 0 then an operand has been clicked
 let inputNumA = [];
 let inputNumB = [];
 let result;
@@ -11,16 +11,19 @@ const operatorButtons = document.querySelectorAll(".opr");
 
 const numButtons = document.querySelectorAll(".num");
 
+const equals = document.querySelector("#equals");
+const clear = document.querySelector("#clear");
+
 operatorButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        flag = operators[index];
-        console.log(flag);
+        operandFlag = operators[index];
+        console.log(operandFlag);
     });
 });
 
 numButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        if(flag == 0){
+        if(operandFlag == 0){
             inputNumA.push(index);
             numA = Number(inputNumA.join(""));
             console.log("A " + numA);
@@ -32,20 +35,21 @@ numButtons.forEach((button, index) => {
     });
 });
 
+equals.addEventListener("click", () => {
+                        operate(numA, numB, operandFlag);
+                        console.log(operate(numA, numB, operandFlag));
+                    });
+                    
+clear.addEventListener("click", () => {
+                        operandFlag = 0;
+                        inputNumA.length = 0;
+                        inputNumB.length = 0;
+                        numA = null;
+                        numB = null;
+                        console.log(numA, numB, inputNumA, inputNumB);
+                    });
 
-/* setOperands();
 
-function setOperands(){
-    if(flag == null){
-        numA = Number(inputNum.join(""));
-        console.log(numA);
-    }else if(flag != null){
-        console.log(flag);
-        numB = Number(inputNum.join(""));
-        console.log(numB);
-    }
-}
- */
 function add(a, b){
     return a + b;
 }
