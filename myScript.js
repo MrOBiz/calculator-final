@@ -17,7 +17,7 @@ const clear = document.querySelector("#clear");
 operatorButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         operandFlag = operators[index];
-        console.log(operandFlag);
+        display.textContent = operandFlag;
     });
 });
 
@@ -26,27 +26,31 @@ numButtons.forEach((button, index) => {
         if(operandFlag == 0){
             inputNumA.push(index);
             numA = Number(inputNumA.join(""));
-            console.log("A " + numA);
+            display.textContent = numA;
         }else{
             inputNumB.push(index);
             numB = Number(inputNumB.join(""));
-            console.log("B " + numB);
+            display.textContent = numB;
         }
     });
 });
 
 equals.addEventListener("click", () => {
                         operate(numA, numB, operandFlag);
-                        console.log(operate(numA, numB, operandFlag));
+                        display.textContent = numA + " " +
+                                            operandFlag +
+                                            " " +
+                                            numB + " = " +
+                                            operate(numA, numB, operandFlag); 
                     });
-                    
+
 clear.addEventListener("click", () => {
                         operandFlag = 0;
                         inputNumA.length = 0;
                         inputNumB.length = 0;
                         numA = null;
                         numB = null;
-                        console.log(numA, numB, inputNumA, inputNumB);
+                        display.textContent = "Waiting";
                     });
 
 
