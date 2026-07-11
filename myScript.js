@@ -82,12 +82,30 @@ clear.addEventListener("click", () => {
 
 
 /* dot.addEventListener("click", () => {
-            if(dotFlag == 0){
-                
+            if(dotFlag === 1){
+                return;
+            }
+
+            if (operandFlag == 0) {
+                if (inputNumA.length === 0) {
+                    inputNumA.push("0");
+                }
+
+                inputNumA.push(".");
+                numA = Number(inputNumA.join(""));
+                display.textContent = inputNumA.join("");
+            }else {
+                if (inputNumB.length === 0) {
+                    inputNumB.push("0");
+                }
+
+                inputNumB.push(".");
+                numB = Number(inputNumB.join(""));
+                display.textContent = inputNumB.join("");
             }
     
             dotFlag = 1;
-        }); */
+        }); */ 
 
 function clearEverything(){
     operandFlag = 0;
