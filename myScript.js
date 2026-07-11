@@ -1,8 +1,10 @@
 let numA, numB;
 let operators = ["+", "-", "*", "/"];
-let operandFlag = 0; //If != 0 then an operand has been clicked
+let operandFlag = 0; //If != 0 -> an operand has been clicked
+//let resultFlag = 0; //If != 0 -> there's a result from operand clicks
 let inputNumA = [];
 let inputNumB = [];
+
 
 const display = document.querySelector("#display");
 
@@ -22,6 +24,7 @@ operatorButtons.forEach((button, index) => {
             return;
         }
 
+        //stops if there's no first operand and many operator clicks
         if(numA == null && numB != null &&
            operandFlag != 0){
             clearEverything();
@@ -34,6 +37,7 @@ operatorButtons.forEach((button, index) => {
             numA = operate(numA, numB, operandFlag);
             inputNumB.length = 0;
             numB = null;
+            //resultFlag = 1;
         }
 
         operandFlag = operators[index];
@@ -42,11 +46,14 @@ operatorButtons.forEach((button, index) => {
 
 numButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        /* if(numA != null && numB == null &&
-            operandFlag != null){
-                numA = 
-            }
- */
+        
+        /* if(resultFlag == 1){
+            inputNumA.push(index);
+            numA = Number(inputNumA.join(""));
+            display.textContent = numA;
+            resultFlag = 0;
+        }  */
+ 
         if(operandFlag == 0){
             inputNumA.push(index);
             numA = Number(inputNumA.join(""));
