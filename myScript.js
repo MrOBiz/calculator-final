@@ -1,6 +1,7 @@
 let numA, numB;
 let operators = ["+", "-", "*", "/"];
 let operandFlag = 0; //If != 0 -> an operand has been clicked
+let dotFlag = 0;
 
 let inputNumA = [];
 let inputNumB = [];
@@ -80,8 +81,17 @@ clear.addEventListener("click", () => {
         });
 
 
+/* dot.addEventListener("click", () => {
+            if(dotFlag == 0){
+                
+            }
+    
+            dotFlag = 1;
+        }); */
+
 function clearEverything(){
     operandFlag = 0;
+    dotFlag = 0;
     inputNumA.length = 0;
     inputNumB.length = 0;
     numA = null;
