@@ -14,16 +14,19 @@ const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 
 operatorButtons.forEach((button, index) => {
-    /* if(operandFlag == "/" && numB == 0){
-        clearEverything();
-        return "0 is a bad customer..."; 
-    }else{ */
     button.addEventListener("click", () => {
+        //stops /0, otherwise checks for second number
+        if(numB == 0 && operandFlag == "/"){
+            clearEverything();
+            display.textContent = "0 is a bad customer..."; 
+        }
+        
         if(numB != null){
             display.textContent = operate(numA, numB, operandFlag);
             numA = operate(numA, numB, operandFlag);
             inputNumB.length = 0;
         }
+
         operandFlag = operators[index];
     });
 });
