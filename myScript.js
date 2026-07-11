@@ -25,6 +25,7 @@ operatorButtons.forEach((button, index) => {
             display.textContent = operate(numA, numB, operandFlag);
             numA = operate(numA, numB, operandFlag);
             inputNumB.length = 0;
+            numB = null;
         }
 
         operandFlag = operators[index];
