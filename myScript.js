@@ -19,6 +19,14 @@ operatorButtons.forEach((button, index) => {
         if(numB == 0 && operandFlag == "/"){
             clearEverything();
             display.textContent = "0 is a bad customer..."; 
+            return;
+        }
+
+        if(numA == null && numB != null &&
+           operandFlag != 0){
+            clearEverything();
+            display.textContent = "Waiting.";
+            return;
         }
         
         if(numB != null){
@@ -34,6 +42,11 @@ operatorButtons.forEach((button, index) => {
 
 numButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
+        /* if(numA != null && numB == null &&
+            operandFlag != null){
+                numA = 
+            }
+ */
         if(operandFlag == 0){
             inputNumA.push(index);
             numA = Number(inputNumA.join(""));
