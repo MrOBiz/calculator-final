@@ -143,128 +143,59 @@ canc.addEventListener("click", () => {
 
 //KEYBOARD FUNCTIONALITIES
 
-operatorButtons.forEach((button, index) => {
-    button.addEventListener("keydown", () => {
-        //stops /0, otherwise checks for second number
-        if(numB == 0 && operandFlag == "/"){
-            clearEverything();
-            display.textContent = "0 is a bad customer..."; 
-            return;
-        }
+document.addEventListener("keydown", (event) => {
+    if (event.key >= "0" && event.key <= "9"){
+        enterNum(event.key);
+        return;
+    }
 
-        //stops if there's no first operand and many operator clicks
-        if(numA == null && numB != null &&
-           operandFlag != 0){
-            clearEverything();
-            display.textContent = "Waiting...";
-            return;
-        }
-        
-        if(numB != null){
-            display.textContent = operate(numA, numB, operandFlag);
-            numA = operate(numA, numB, operandFlag);
-            inputNumB.length = 0;
-            numB = null;
-        }
+    if (operators.includes(event.key)){
+        enterOperator(event.key);
+        return;
+    }
 
-        operandFlag = operators[index];
-        dotFlag = 0;
+    if (event.key === "."){
+        enterDot(event.key);
+        return;
+    }
 
-    });
-});
+    if (event.key === "Backspace"){
+        enterCanc(event.key);
+        return;
+    }
 
-numButtons.forEach((button, index) => {
-    button.addEventListener("keydown", () => {
-        
-        if(operandFlag == 0){
-            inputNumA.push(button.textContent);
-            numA = Number(inputNumA.join(""));
-            display.textContent = inputNumA.join("");
-        }else{
-            inputNumB.push(button.textContent);
-            numB = Number(inputNumB.join(""));
-            display.textContent = inputNumB.join("");
-        }
+    if (event.key === "Escape"){
+        clearEverything();
+        return;
+    }
 
-    });
-});
-
-equals.addEventListener("keydown", () => {
-            if(numA != null && numB != null && 
-                operandFlag != 0){
-                operate(numA, numB, operandFlag);
-                display. textContent = 
-                        sayEqual(numA, numB, operandFlag);
-
-                clearEverything();
-            }else{
-                clearEverything();
-                display.textContent = "Waiting...";
-            } 
-        });
-
-clear.addEventListener("keydown", () => {
-            clearEverything()
-            display.textContent = "Waiting...";
-        });
-
-
-dot.addEventListener("keydown", () => {
-            if(dotFlag === 1){
-                return;
-            }
-
-            if (operandFlag == 0) {
-                if (inputNumA.length === 0) {
-                    inputNumA.push("0");
-                }
-
-                inputNumA.push(".");
-                numA = Number(inputNumA.join(""));
-                display.textContent = inputNumA.join("");
-            }else{
-                if (inputNumB.length === 0) {
-                    inputNumB.push("0");
-                }
-
-                inputNumB.push(".");
-                numB = Number(inputNumB.join(""));
-                display.textContent = inputNumB.join("");
-            }
-            
-            dotFlag = 1;
-        });
-
-canc.addEventListener("keydown", () => {
-            if(inputNumA.length === 0 &&
-                inputNumB.length === 0){
-                return;
-            }
-
-            if (operandFlag == 0) {
-        
-                inputNumA.pop();
-                numA = Number(inputNumA.join(""));
-                display.textContent = inputNumA.join("");
-
-                if(inputNumA.length === 0){
-                    display.textContent = "Insert new operand"
-                }
-
-            }else{
-
-                inputNumB.pop();
-                numB = Number(inputNumB.join(""));
-                display.textContent = inputNumB.join("");
-
-                if(inputNumB.length === 0){
-                    display.textContent = "Insert new operand"
-                }
-
-            }
+    if (event.key === "Enter" || event.key == "="){
+        calculateResult(event.key);
+        return;
+    }
 });
 
 //HELPER FUNCTIONS
+
+/* function enterNum(digit){
+
+}
+
+function enterOperator(opr){
+
+}
+
+function enterCanc(del){
+
+}
+
+function enterDot(dot){
+    
+}
+
+function calculateResult(){
+    
+} */
 
 function clearEverything(){
     operandFlag = 0;
