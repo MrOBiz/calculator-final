@@ -13,7 +13,7 @@ const operatorButtons = document.querySelectorAll(".opr");
 
 const numButtons = document.querySelectorAll(".num");
 
-const backspace = document.querySelector("#backspace");
+const canc = document.querySelector("#backspace");
 const dot = document.querySelector("#dot");
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
@@ -108,8 +108,36 @@ dot.addEventListener("click", () => {
             }
             
             dotFlag = 1;
-        }); 
+        });
 
+canc.addEventListener("click", () => {
+            if(inputNumA.length === 0 &&
+                inputNumB.length === 0){
+                return;
+            }
+
+            if (operandFlag == 0) {
+        
+                inputNumA.pop();
+                numA = Number(inputNumA.join(""));
+                display.textContent = inputNumA.join("");
+
+                if(inputNumA.length === 0){
+                    display.textContent = "Insert new operand"
+                }
+
+            }else{
+
+                inputNumB.pop();
+                numB = Number(inputNumB.join(""));
+                display.textContent = inputNumB.join("");
+
+                if(inputNumB.length === 0){
+                    display.textContent = "Insert new operand"
+                }
+
+            }
+});
 
 function clearEverything(){
     operandFlag = 0;
