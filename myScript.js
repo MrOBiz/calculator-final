@@ -44,6 +44,7 @@ operatorButtons.forEach((button, index) => {
 
         operandFlag = operators[index];
         dotFlag = 0;
+
     });
 });
 
@@ -51,14 +52,15 @@ numButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         
         if(operandFlag == 0){
-            inputNumA.push(index);
+            inputNumA.push(button.textContent);
             numA = Number(inputNumA.join(""));
-            display.textContent = numA;
+            display.textContent = inputNumA.join("");
         }else{
-            inputNumB.push(index);
+            inputNumB.push(button.textContent);
             numB = Number(inputNumB.join(""));
-            display.textContent = numB;
+            display.textContent = inputNumB.join("");
         }
+
     });
 });
 
@@ -104,9 +106,10 @@ dot.addEventListener("click", () => {
                 numB = Number(inputNumB.join(""));
                 display.textContent = inputNumB.join("");
             }
-    
+            
             dotFlag = 1;
         }); 
+
 
 function clearEverything(){
     operandFlag = 0;
