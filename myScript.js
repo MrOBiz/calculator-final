@@ -43,6 +43,7 @@ operatorButtons.forEach((button, index) => {
         }
 
         operandFlag = operators[index];
+        dotFlag = 0;
     });
 });
 
@@ -81,7 +82,7 @@ clear.addEventListener("click", () => {
         });
 
 
-/* dot.addEventListener("click", () => {
+dot.addEventListener("click", () => {
             if(dotFlag === 1){
                 return;
             }
@@ -94,7 +95,7 @@ clear.addEventListener("click", () => {
                 inputNumA.push(".");
                 numA = Number(inputNumA.join(""));
                 display.textContent = inputNumA.join("");
-            }else {
+            }else{
                 if (inputNumB.length === 0) {
                     inputNumB.push("0");
                 }
@@ -105,7 +106,7 @@ clear.addEventListener("click", () => {
             }
     
             dotFlag = 1;
-        }); */ 
+        }); 
 
 function clearEverything(){
     operandFlag = 0;
