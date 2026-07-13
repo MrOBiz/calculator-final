@@ -146,38 +146,50 @@ canc.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
     if (event.key >= "0" && event.key <= "9"){
         enterNum(event.key);
+
+        console.log(event.key);
         return;
     }
 
     if (operators.includes(event.key)){
         enterOperator(event.key);
+
+        console.log(event.key);
         return;
     }
 
     if (event.key === "."){
         enterDot(event.key);
+
+        console.log(event.key);
         return;
     }
 
     if (event.key === "Backspace"){
         enterCanc(event.key);
+
+        console.log(event.key);
         return;
     }
 
     if (event.key === "Escape"){
         clearEverything();
+
+        console.log(event.key);
         return;
     }
 
     if (event.key === "Enter" || event.key == "="){
         calculateResult(event.key);
+
+        console.log(event.key);
         return;
     }
 });
 
 //HELPER FUNCTIONS
 
-/* function enterNum(digit){
+function enterNum(digit){
 
 }
 
@@ -195,7 +207,7 @@ function enterDot(dot){
 
 function calculateResult(){
     
-} */
+}
 
 function clearEverything(){
     operandFlag = 0;
