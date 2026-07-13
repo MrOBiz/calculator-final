@@ -22,167 +22,55 @@ const clear = document.querySelector("#clear");
 
 operatorButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        //stops /0, otherwise checks for second number
-        if(numB == 0 && operandFlag == "/"){
-            clearEverything();
-            display.textContent = "0 is a bad customer..."; 
-            return;
-        }
-
-        //stops if there's no first operand and many operator clicks
-        if(numA == null && numB != null &&
-           operandFlag != 0){
-            clearEverything();
-            display.textContent = "Waiting...";
-            return;
-        }
-        
-        if(numB != null){
-            display.textContent = operate(numA, numB, operandFlag);
-            numA = operate(numA, numB, operandFlag);
-            inputNumB.length = 0;
-            numB = null;
-        }
-
-        operandFlag = operators[index];
-        dotFlag = 0;
-
+        enterOperator(operators[index]);
     });
 });
 
 numButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
-        
-        if(operandFlag == 0){
-            inputNumA.push(button.textContent);
-            numA = Number(inputNumA.join(""));
-            display.textContent = inputNumA.join("");
-        }else{
-            inputNumB.push(button.textContent);
-            numB = Number(inputNumB.join(""));
-            display.textContent = inputNumB.join("");
-        }
-
+        enterNum(button.textContent);
     });
 });
 
-equals.addEventListener("click", () => {
-            if(numA != null && numB != null && 
-                operandFlag != 0){
-                operate(numA, numB, operandFlag);
-                display. textContent = 
-                        sayEqual(numA, numB, operandFlag);
-
-                clearEverything();
-            }else{
-                clearEverything();
-                display.textContent = "Waiting...";
-            } 
-        });
+equals.addEventListener("click", calculateResult);
+dot.addEventListener("click", enterDot);
+canc.addEventListener("click", enterCanc);
 
 clear.addEventListener("click", () => {
             clearEverything()
             display.textContent = "Waiting...";
         });
 
-
-dot.addEventListener("click", () => {
-            if(dotFlag === 1){
-                return;
-            }
-
-            if (operandFlag == 0) {
-                if (inputNumA.length === 0) {
-                    inputNumA.push("0");
-                }
-
-                inputNumA.push(".");
-                numA = Number(inputNumA.join(""));
-                display.textContent = inputNumA.join("");
-            }else{
-                if (inputNumB.length === 0) {
-                    inputNumB.push("0");
-                }
-
-                inputNumB.push(".");
-                numB = Number(inputNumB.join(""));
-                display.textContent = inputNumB.join("");
-            }
-            
-            dotFlag = 1;
-        });
-
-canc.addEventListener("click", () => {
-            if(inputNumA.length === 0 &&
-                inputNumB.length === 0){
-                return;
-            }
-
-            if (operandFlag == 0) {
-        
-                inputNumA.pop();
-                numA = Number(inputNumA.join(""));
-                display.textContent = inputNumA.join("");
-
-                if(inputNumA.length === 0){
-                    display.textContent = "Insert new operand"
-                }
-
-            }else{
-
-                inputNumB.pop();
-                numB = Number(inputNumB.join(""));
-                display.textContent = inputNumB.join("");
-
-                if(inputNumB.length === 0){
-                    display.textContent = "Insert new operand"
-                }
-
-            }
-});
-
 //KEYBOARD FUNCTIONALITIES
 
 document.addEventListener("keydown", (event) => {
-    if (event.key >= "0" && event.key <= "9"){
+    if(event.key >= "0" && event.key <= "9"){
         enterNum(event.key);
-
-        console.log(event.key);
         return;
     }
 
-    if (operators.includes(event.key)){
+    if(operators.includes(event.key)){
         enterOperator(event.key);
-
-        console.log(event.key);
         return;
     }
 
-    if (event.key === "."){
-        enterDot(event.key);
-
-        console.log(event.key);
+    if(event.key === "."){
+        enterDot();
         return;
     }
 
-    if (event.key === "Backspace"){
-        enterCanc(event.key);
-
-        console.log(event.key);
+    if(event.key === "Backspace"){
+        enterCanc();
         return;
     }
 
-    if (event.key === "Escape"){
+    if(event.key === "Escape"){
         clearEverything();
-
-        console.log(event.key);
         return;
     }
 
     if (event.key === "Enter" || event.key == "="){
-        calculateResult(event.key);
-
-        console.log(event.key);
+        calculateResult();
         return;
     }
 });
@@ -190,23 +78,110 @@ document.addEventListener("keydown", (event) => {
 //HELPER FUNCTIONS
 
 function enterNum(digit){
-
+    if(operandFlag === 0){
+        inputNumA.push(digit);
+        numA = Number(inputNumA.join(""));
+        display.textContent = inputNumA.join("");
+    }else{
+        inputNumB.push(digit);
+        numB = Number(inputNumB.join(""));
+        display.textContent = inputNumB.join("");
+    }
 }
 
 function enterOperator(opr){
+    //stops /0, otherwise checks for second number
+    if(numB == 0 && operandFlag == "/"){
+        clearEverything();
+        display.textContent = "0 is a bad customer..."; 
+        return;
+    }
 
-}
-
-function enterCanc(del){
-
-}
-
-function enterDot(dot){
+    //stops if there's no first operand and many operator clicks
+    if(numA == null && numB != null &&
+        operandFlag != 0){
+        clearEverything();
+        display.textContent = "Waiting...";
+        return;
+    }
     
+    if(numB != null){
+        display.textContent = operate(numA, numB, operandFlag);
+        numA = operate(numA, numB, operandFlag);
+        inputNumB.length = 0;
+        numB = null;
+    }
+
+    operandFlag = opr;
+    dotFlag = 0;
+}
+
+function enterCanc(){
+    if(inputNumA.length === 0 &&
+        inputNumB.length === 0){
+        return;
+    }
+
+    if (operandFlag == 0) {
+
+        inputNumA.pop();
+        numA = Number(inputNumA.join(""));
+        display.textContent = inputNumA.join("");
+
+        if(inputNumA.length === 0){
+            display.textContent = "Insert new operand"
+        }
+
+    }else{
+
+        inputNumB.pop();
+        numB = Number(inputNumB.join(""));
+        display.textContent = inputNumB.join("");
+
+        if(inputNumB.length === 0){
+            display.textContent = "Insert new operand"
+        }
+    }
+}
+
+function enterDot(){
+    if(dotFlag === 1){
+        return;
+    }
+
+    if (operandFlag == 0) {
+        if (inputNumA.length === 0) {
+            inputNumA.push("0");
+        }
+
+        inputNumA.push(".");
+        numA = Number(inputNumA.join(""));
+        display.textContent = inputNumA.join("");
+    }else{
+        if (inputNumB.length === 0) {
+            inputNumB.push("0");
+        }
+
+        inputNumB.push(".");
+        numB = Number(inputNumB.join(""));
+        display.textContent = inputNumB.join("");
+    }
+    
+    dotFlag = 1; 
 }
 
 function calculateResult(){
-    
+    if(numA != null && numB != null && 
+        operandFlag != 0){
+        operate(numA, numB, operandFlag);
+        display. textContent = 
+                sayEqual(numA, numB, operandFlag);
+
+        clearEverything();
+    }else{
+        clearEverything();
+        display.textContent = "Waiting...";
+    }
 }
 
 function clearEverything(){
