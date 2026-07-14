@@ -122,7 +122,11 @@ function enterCanc(){
         return;
     }
 
+    
     if (operandFlag == 0) {
+        if(inputNumA[inputNumA.length -1] === "."){
+            dotFlag = 0;
+        }
 
         inputNumA.pop();
         numA = Number(inputNumA.join(""));
@@ -133,6 +137,9 @@ function enterCanc(){
         }
 
     }else{
+        if(inputNumB[inputNumB.length -1] === "."){
+            dotFlag = 0;
+        }
 
         inputNumB.pop();
         numB = Number(inputNumB.join(""));
