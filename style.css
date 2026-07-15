@@ -1,0 +1,57 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#display{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+
+    color: greenyellow;
+    background-color: black;
+    padding: 20px;
+    margin: 50px;
+
+    border: 10px dotted grey;
+
+    min-width: 400px;
+    min-height: 200px;
+}
+
+.numPad{
+    display: flex;
+    justify-content: center;
+}
+
+.operators{
+    display: flex;
+    justify-content: center;
+}
+
+.num{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: whitesmoke;
+    background-color: black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.opr{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: whitesmoke;
+    background-color: brown;
+    padding: 10px;
+    margin: 10px;
+}
+
+#equals, #clear, #backspace, #dot{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: whitesmoke;
+    background-color: blue;
+    padding: 10px;
+    margin: 10px;
+}
