@@ -14,6 +14,7 @@ body{
     margin: 50px;
 
     border: 10px dotted grey;
+    border-radius: 25px;
 
     min-width: 400px;
     min-height: 200px;
@@ -36,6 +37,7 @@ body{
     background-color: black;
     padding: 10px;
     margin: 10px;
+    border-radius: 10px;
 }
 
 .opr{
@@ -45,6 +47,7 @@ body{
     background-color: brown;
     padding: 10px;
     margin: 10px;
+    border-radius: 10px;
 }
 
 #equals, #clear, #backspace, #dot{
@@ -54,4 +57,5 @@ body{
     background-color: blue;
     padding: 10px;
     margin: 10px;
+    border-radius: 10px;
 }
