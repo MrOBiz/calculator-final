@@ -59,13 +59,14 @@ document.addEventListener("keydown", (event) => {
         return;
     }
 
-    if(event.key === "c"){
+    if(event.key === "Backspace"){
         enterCanc();
         return;
     }
 
-    if(event.key === "e"){
+    if(event.key === "Escape"){
         clearEverything();
+        display.textContent = "Waiting...";
         return;
     }
 
