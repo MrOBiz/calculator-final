@@ -59,12 +59,12 @@ document.addEventListener("keydown", (event) => {
         return;
     }
 
-    if(event.key === "Backspace"){
+    if(event.key === "c"){
         enterCanc();
         return;
     }
 
-    if(event.key === "Escape"){
+    if(event.key === "e"){
         clearEverything();
         return;
     }
