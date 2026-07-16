@@ -207,7 +207,8 @@ function sayEqual(a, b, flag){
         return "0 is a bad customer..."; 
     }else{    
         return a + " " + flag + " " +
-                b + " = " + operate(a, b, flag);
+                b + " = " + operate(a, b, flag) +
+                " " + "-> CLEAR";
     }
 }
 
